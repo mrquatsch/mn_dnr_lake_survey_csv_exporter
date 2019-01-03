@@ -8,6 +8,6 @@ Python app that runs inside of a docker container. The app scrapes the MN DNR si
 
 * Finally, there is a run.sh file; which is what should be executed. The run.sh builds the container, executes the container and mount your current directory in order to produce the output file
 
-####### NOTE: Not all lakes have surveys
-####### Funny note: The MN DNR doesn't even list 10,000 lakes
+##### NOTE: Not all lakes have surveys
+##### Funny note: The MN DNR doesn't even list 10,000 lakes
 
