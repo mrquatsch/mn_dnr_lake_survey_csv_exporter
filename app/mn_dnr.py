@@ -64,6 +64,7 @@ def get_county_list(url):
         county_id = county['id']
         county_name = county['county']
         county_dictionary[county_name] = county_id
+        break
 
     return county_dictionary
 
@@ -129,7 +130,8 @@ def get_lake_info(url, fish_species_json, lake_id_list, new_lake_id_list, lake_d
     result = get_api_call(lake_id_url)
     json_result = json.loads(result)
     try:
-        most_recent_survey = json_result['result']['surveys'][-1]
+        #most_recent_survey = json_result['result']['surveys'][-1]
+        most_recent_survey = get_most_recent_survey(json_result)
         survey_date = most_recent_survey['surveyDate']
         lake_dictionary['survey_date'] = survey_date
         for fish_species in most_recent_survey['lengths']:
@@ -154,6 +156,18 @@ def get_lake_info(url, fish_species_json, lake_id_list, new_lake_id_list, lake_d
         pass
 
     return new_lake_id_list
+
+def get_most_recent_survey(json_input):
+    most_recent_survey = json_input['result']['surveys'][0]
+    most_recent_survey_date = json_input['result']['surveys'][0]['surveyDate'].replace('-', '')
+
+    for survey in json_input['result']['surveys']:
+        survey_date = survey['surveyDate'].replace('-', '')
+        if float(survey_date) > float(most_recent_survey_date):
+            most_recent_survey_date = survey_date
+            most_recent_survey = survey
+
+    return most_recent_survey
 
 def get_api_call(url):
     '''
