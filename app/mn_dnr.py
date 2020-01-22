@@ -64,7 +64,6 @@ def get_county_list(url):
         county_id = county['id']
         county_name = county['county']
         county_dictionary[county_name] = county_id
-        break
 
     return county_dictionary
 
