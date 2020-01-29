@@ -1,1 +1,4 @@
 language: python
+install:
+  - pip install -r docker/requirements.txt
+script: app/mn_dnr_lookup.py
