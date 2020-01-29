@@ -62,6 +62,7 @@ def print_output(lake_list):
         except:
             pass
     csv_file.close()
+    sys.exit(0)
 
 if __name__ == '__main__':
     main()
